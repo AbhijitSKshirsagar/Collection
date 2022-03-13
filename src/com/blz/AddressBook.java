@@ -1,9 +1,9 @@
 package com.blz;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Scanner;
-
-import javax.swing.text.html.HTMLDocument.Iterator;
+import java.util.Set;
 
 /*
  * Purpose to add the details of the person using collection
@@ -146,24 +146,40 @@ public class AddressBook {
 		return null;
 	}
 
+	private void deletePerson() {
+		sc = new Scanner(System.in);
+		System.out.print("Enter name of person to delete its contact :-> ");
+		String personName = sc.next();
+		Person person = getPerson(personName);
+		if (person == null) {
+			System.out.println(":: sorry No person found for given name ::");
+		} else {
+			list.remove(person);
+		}
+
+	}
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
 		System.out.println("Welcome to Address Book Porgram");
-        AddressBook addressBook = new AddressBook();
-        
+		AddressBook addressBook = new AddressBook();
+
 		Scanner sc = new Scanner(System.in);
-        int choice = 0;
-        while (choice!=10) {
-            System.out.print("please choose from below\n1-add contact\n2-edit contact\n:-> ");
-            choice = sc.nextInt();
-            switch (choice) {
-                case 1:
-                    addressBook.addDetails();
-                    break;
-                case 2:
-                    addressBook.editContact();
-                    break;
-            }
-        }
+		int choice = 0;
+		while (choice != 10) {
+			System.out.print("please choose from below\n1-add contact\n2-edit contact\n3-delete contact\n:-> ");
+			choice = sc.nextInt();
+			switch (choice) {
+			case 1:
+				addressBook.addDetails();
+				break;
+			case 2:
+				addressBook.editContact();
+				break;
+			case 3:
+				addressBook.deletePerson();
+			}
+		}
+	}
 }
